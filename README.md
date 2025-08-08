@@ -1,4 +1,4 @@
-**Employee Attrition Prediction**
+# Employee Attrition Prediction: See the Signs Before they Resign
 
 **1. Executive Summary**
 This project developed a machine learning model to predict which employees are most likely to leave the company. By analyzing historical HR data, the model identifies employees at high risk of attrition, allowing the business to implement targeted retention strategies. This proactive approach aims to reduce turnover costs and improve overall workforce stability.
