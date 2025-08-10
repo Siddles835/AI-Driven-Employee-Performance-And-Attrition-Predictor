@@ -16,7 +16,7 @@ import joblib
 os.makedirs('models', exist_ok=True)
 df = pd.read_csv("/Users/sidhaanthkapoor/Desktop/AI-Driven Employee Performance & Attrition Predictor/data/WA_Fn-UseC_-HR-Employee-Attrition.csv")
 
-X = df[["MonthlyIncome", "Age", "EmployeeNumber", "TotalWorkingYears",
+X = df[["MonthlyIncome", "Age", "TotalWorkingYears",
         "DailyRate", "MonthlyRate", "OverTime", "DistanceFromHome", "HourlyRate"]]
 y = df["Attrition"].map({'Yes': 1, 'No': 0})
 
