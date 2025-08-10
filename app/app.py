@@ -4,9 +4,6 @@ import numpy as np
 import joblib
 import os
 import plotly.express as px
-import plotly.graph_objects as go
-import seaborn as sns
-import matplotlib.pyplot as plt
 from PIL import Image
 from io import BytesIO
 import base64
@@ -68,7 +65,7 @@ if uploaded_file is not None:
     st.header("Batch Prediction")
     if st.button("Run Predictions on Uploaded Data"):
         input_features = [
-            "MonthlyIncome", "Age", "EmployeeNumber", "TotalWorkingYears",
+            "MonthlyIncome", "Age", "TotalWorkingYears",
             "DailyRate", "MonthlyRate", "OverTime", "DistanceFromHome", "HourlyRate"
         ]
 
@@ -83,7 +80,7 @@ if uploaded_file is not None:
         df_predict["Resignation Probability"] = probabilities
 
         st.subheader("Prediction Results")
-        st.dataframe(df_predict[["EmployeeNumber", "Prediction", "Resignation Probability"]].head())
+        st.dataframe(df_predict[["Prediction", "Resignation Probability"]].head())
 
         csv = df_predict.to_csv(index=False)
         b64 = base64.b64encode(csv.encode()).decode()
@@ -103,7 +100,6 @@ with st.form(key="input_form"):
         overtime = st.selectbox("OverTime", ["Yes", "No"])
 
     with col2:
-        employee_number = st.number_input("Employee Number", 1, 9999, 1234)
         hourly_rate = st.slider("Hourly Rate ($)", 10, 200, 60)
         monthly_rate = st.slider("Monthly Rate ($)", 1000, 20000, 10000)
         distance_from_home = st.slider("Distance From Home (miles)", 0, 60, 10)
@@ -116,7 +112,6 @@ if submit_button:
     input_data = pd.DataFrame([{
         "MonthlyIncome": monthly_income,
         "Age": age,
-        "EmployeeNumber": employee_number,
         "TotalWorkingYears": total_working_years,
         "DailyRate": daily_rate,
         "MonthlyRate": monthly_rate,
@@ -145,7 +140,6 @@ if submit_button:
         st.markdown("""
         - **Monthly Income**: Salary per month.
         - **Age**: Current age of the employee.
-        - **Employee Number**: Unique ID for the employee.
         - **Total Working Years**: Total years of experience.
         - **Daily Rate**: Daily wage.
         - **Monthly Rate**: Base monthly compensation.
